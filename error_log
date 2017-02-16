@@ -1,0 +1,1 @@
+[06-Feb-2017 00:32:51 UTC] PHP Fatal error:  Class 'App\Providers\Schema' not found in /home/nous00/public_html/omar/twiguer.code/app/Providers/AppServiceProvider.php on line 16
