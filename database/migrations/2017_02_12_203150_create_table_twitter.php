@@ -19,6 +19,7 @@ class CreateTableTwitter extends Migration
             $table->string('handle')->unique();
 	        $table->string('twitter_id');
             $table->string('avatar');
+            $table->integer('user_id');
             $table->rememberToken();
             $table->timestamps();
         });

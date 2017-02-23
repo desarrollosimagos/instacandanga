@@ -36,9 +36,11 @@
                         <span class="icon-bar"></span>
                     </button>
 
-                    <!-- Branding Image -->
+                    <!-- Branding Image 
+                    {{ config('app.name', 'Laravel') }} 
+                    -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        <img src="{{ url('img/insta_50.png') }}">
                     </a>
                 </div>
 
@@ -53,7 +55,7 @@
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}">Iniciar Sesion</a></li>
-                            <li><a href="{{ route('register') }}">Registrarse</a></li>
+                            <li><a href="{{ url('/registrar') }}">Registrarse</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

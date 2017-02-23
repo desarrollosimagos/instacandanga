@@ -72,14 +72,14 @@
                         <a href="{{ url('/home') }}">Inicio</a>
                     @else
                         <a href="{{ url('/login') }}">Iniciar Sesión</a>
-                        <a href="{{ url('/register') }}">Registrarse</a>
+                        <a href="{{ url('/registrar') }}">Registrarse</a>
                     @endif
                 </div>
             @endif
 
             <div class="content">
                 <div class="title m-b-md">
-                    Twiguer
+                    <img src="img/insta_grande.png">
 				</div>
             </div>
         </div>

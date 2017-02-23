@@ -50,5 +50,10 @@ return [
     'client_secret' => 'fl1h1DS_tf_c5MPHICj9yWsB',
     'redirect' => 'http://twiguer.puroextremo.com.ve/auth/google/callback',
     ],
+    'instagram' => [
+    'client_id' => env('INSTAGRAM_KEY'),
+    'client_secret' => env('INSTAGRAM_SECRET'),
+    'redirect' => env('INSTAGRAM_REDIRECT_URI'),  
+    ], 
 
 ];

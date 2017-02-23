@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Twiguer',
+    'name' => 'Instacandanga',
 
     /*
     |--------------------------------------------------------------------------
@@ -167,6 +167,7 @@ return [
          * Package Service Providers...
          */
         Laravel\Tinker\TinkerServiceProvider::class,
+        //\SocialiteProviders\Manager\ServiceProvider::class,
 
         /*
          * Application Service Providers...

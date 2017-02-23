@@ -56,8 +56,9 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
-            'phone' => 'required|email|max:255|unique:users',
+            'email' => 'required|email|max:255|unique:users',
 			'phone' => 'required|max:100|unique:users',
+            'instagram_id' => 'required|max:100|unique:users',
             'password' => 'required|min:6|confirmed',
         ]);
     }
@@ -74,6 +75,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
 			'phone' => $data['phone'],
+            'instagram_id' => $data['instagram_id'],
             'password' => bcrypt($data['password']),
         ]);
     }

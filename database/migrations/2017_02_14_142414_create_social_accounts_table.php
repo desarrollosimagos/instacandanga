@@ -19,6 +19,7 @@ class CreateSocialAccountsTable extends Migration
             $table->string('nickname')->unique();
 	        $table->string('facebook_id');
             $table->string('avatar');
+            $table->integer('user_id');
             $table->rememberToken();
             $table->timestamps();
         });

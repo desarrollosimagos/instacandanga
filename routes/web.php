@@ -19,13 +19,14 @@ Route::get('/validate', function () {
     return view('validate');
 });
 
+#Auth::routes();
+
+#Route::get('/home', 'HomeController@index');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index');
+Route::get('/registrar', 'InstagramRegisterController@index');
 
 Route::get('/facebook', 'HomeController@facebook');
 Route::get('/carnet', 'HomeController@carnet');
@@ -43,3 +44,6 @@ Route::get('auth/facebook/callback', 'HomeController@handleProviderCallbackFaceb
 
 Route::get('auth/google', 'HomeController@redirectToProviderGoogle');
 Route::get('auth/google/callback', 'HomeController@handleProviderCallbackGoogle');
+
+Route::get('auth/instagram', 'InstagramRegisterController@redirectToProviderInstagram');
+Route::get('auth/instagram/callback', 'InstagramRegisterController@handleProviderCallbackInstagram');

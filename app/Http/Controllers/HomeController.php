@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\twitter;
 use App\facebook;
 use App\google;
+use App\instagram;
 use Socialite;
 use Illuminate\Support\Facades\Auth;
 use DB;
@@ -75,7 +76,13 @@ class HomeController extends Controller
     }
 
     public function instagram(){
-        return view('instagram'); 
+        $id = Auth::id();
+        $instagram = DB::table('instagram')
+			->distinct()
+			->where('instagram.user_id',$id)
+			->get();
+        return view('instagram')
+			->with(array('instagram'=>$instagram));
     }
 
 
@@ -102,6 +109,12 @@ class HomeController extends Controller
     {
 
         return Socialite::driver('google')->redirect();
+    }
+
+    public function redirectToProviderInstagram()
+    {
+
+        return Socialite::driver('instagram')->redirect();
     }
 
     /**
@@ -152,6 +165,36 @@ class HomeController extends Controller
         //Auth::login($authUser, true);
 
         return redirect('google');
+    }
+
+    public function handleProviderCallbackInstagram()
+    {
+        try {
+            $user = Socialite::driver('instagram')->user();
+        } catch (Exception $e) {
+            return redirect('auth/instagram');
+        }
+
+        $authUser = $this->findOrCreateUser('instagram',$user);
+
+        //Auth::login($authUser, true);
+
+        return redirect('instagram');
+    }
+
+    public function RegisterCallBackInstagram()
+    {
+        try {
+            $user = Socialite::driver('instagram')->user();
+        } catch (Exception $e) {
+            return redirect('auth/instagram');
+        }
+
+        $authUser = $this->findOrCreateUser('instagram',$user);
+
+        //Auth::login($authUser, true);
+
+        return redirect('register');
     }
 
     /**
@@ -206,6 +249,22 @@ class HomeController extends Controller
                 'handle' => $socialUser->name,
                 'google_id' => $socialUser->id,
                 'avatar' => $socialUser->avatar_original,
+                'user_id' => $id,
+            ]);
+        }
+
+        if($driver == 'instagram'){
+
+            $authUser = instagram::where('instagram_id', $socialUser->id)->first();
+            $id = Auth::id();
+            if ($authUser){
+                return $authUser;
+            }
+            return instagram::create([
+                'name' => $socialUser->name,
+                'handle' => $socialUser->nickname,
+                'instagram_id' => $socialUser->id,
+                'avatar' => $socialUser->avatar,
                 'user_id' => $id,
             ]);
         }
