@@ -6,8 +6,10 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading"><h4>Panel de Usuario</h4></div>
-
+                
                 <div class="panel-body">
+
+                    <!--
                     <nav class="navbar navbar-default">
                         <div class="container-fluid">
                             <div class="navbar-header">
@@ -18,7 +20,7 @@
                             </a>
                             </div>
                         </div>
-                    </nav>
+                    </nav>-->
 
                     <nav class="navbar navbar-default">
                         <div class="container-fluid">
@@ -57,7 +59,7 @@
                             </div>
                         </div>
                     </nav>
-
+                    <!--
                     <nav class="navbar navbar-default">
                         <div class="container-fluid">
                             <div class="navbar-header">
@@ -69,7 +71,7 @@
                             </a>
                             </div>
                         </div>
-                    </nav>
+                    </nav>-->
                 </div>
             </div>
         </div>
