@@ -23,8 +23,20 @@
     </script>
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
+    <div id="app" style="background-color:#d22052">
+        <nav class="navbar navbar-default navbar-static-top" style="background-color:#fff;margin-bottom: 0px;">
+            <div class="container">
+                
+                    <div class="row">
+                        <div class="col-md-6 text-left"><img src="{{ url('img/gob.png') }}"></div>
+                        <div class="col-md-6 text-right"><img src="{{ url('img/zam.png') }}"></div>
+                    </div>
+                
+            </div>
+        </nav>
+
+        <nav class="navbar navbar-default navbar-static-top" 
+        style="border-bottom-width:7px;border-bottom-color:#9d183e;background-image: url('img/bg_tira.png');">
             <div class="container">
                 <div class="navbar-header">
 
@@ -38,9 +50,10 @@
 
                     <!-- Branding Image 
                     {{ config('app.name', 'Laravel') }} 
+                    <img src="{{ url('img/insta_50.png') }}">
                     -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="{{ url('img/insta_50.png') }}">
+                        
                     </a>
                 </div>
 
@@ -51,11 +64,14 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
+                    <ul class="nav navbar-nav navbar-right" style="max-height:47px;">
+                        
+                        
+                        <!-- Authentication Links 
+                        
                         @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Iniciar Sesion</a></li>
-                            <li><a href="{{ url('/registrar') }}">Registrarse</a></li>
+                            <li><a href="{{ route('login') }}"></a></li>
+                            <li><a href="{{ url('/registrar') }}"><img src="{{ url('img/registrate.png') }}"></a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -77,6 +93,23 @@
                                 </ul>
                             </li>
                         @endif
+                        -->
+                        @if (Auth::guest())
+                            
+                            <a href="{{ url('/registrar') }}"><img src="{{ url('img/registrate.png') }}"></a>
+                            <a href="{{ route('login') }}"><img src="{{ url('img/accede.png') }}"></a>
+                        @else
+                            <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                Logout
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        @endif
+                        <img src="{{ url('img/red.png') }}">
                     </ul>
                 </div>
             </div>
