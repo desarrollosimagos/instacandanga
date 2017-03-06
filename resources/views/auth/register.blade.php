@@ -33,7 +33,19 @@
                                 <input id="instagram_id" type="hidden" name="instagram_id" value="{{ session('instagram_id') }}">
 
                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                    <label for="name" class="col-md-4 control-label">Nombre</label>
+                                    <label for="name" class="col-md-4 control-label"></label>
+
+                                    <div class="col-md-6">
+                                        <ul>
+                                            <li style="list-style-type: none;"><input type="radio" name="tipo_user" value="colectivo" id="tipo_user1"> Soy un colectivo.</li>
+                                            <li style="list-style-type: none;"><input type="radio" name="tipo_user" value="natural" id="tipo_user2"> Soy una persona.</li>
+                                        </ul>
+                                        
+                                    </div>
+                                </div>
+
+                                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                                    <label for="name" id="nombre_cuenta" class="col-md-4 control-label">Nombre</label>
 
                                     <div class="col-md-6">
                                         <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
@@ -45,6 +57,49 @@
                                         @endif
                                     </div>
                                 </div>
+
+                                <div id="div_rif" class="form-group{{ $errors->has('rif') ? ' has-error' : '' }}">
+                                    <label for="name" id="rif_cuenta" class="col-md-4 control-label">Rif</label>
+
+                                    <div class="col-md-6">
+                                        <input id="rif" type="text" class="form-control" name="rif" value="{{ old('rif') }}" required autofocus>
+
+                                        @if ($errors->has('rif'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('rif') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div id="div_direccion" class="form-group{{ $errors->has('direccion') ? ' has-error' : '' }}">
+                                    <label for="direccion" class="col-md-4 control-label">Dirección</label>
+
+                                    <div class="col-md-6">
+                                        <input id="direccion" type="text" class="form-control" name="direccion" value="{{ old('direccion') }}" required autofocus>
+
+                                        @if ($errors->has('direccion'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('direccion') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div id="div_objetivos" class="form-group{{ $errors->has('objetivos') ? ' has-error' : '' }}">
+                                    <label for="objetivos" class="col-md-4 control-label">Objetivos</label>
+
+                                    <div class="col-md-6">
+                                        <input id="objetivos" type="text" class="form-control" name="objetivos" value="{{ old('objetivos') }}" required autofocus>
+
+                                        @if ($errors->has('objetivos'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('objetivos') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
                                 
                                 <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
                                     <label for="phone" class="col-md-4 control-label">Telefono</label>
@@ -119,4 +174,26 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+<script type="text/javascript">
+
+$(function () {
+    $( "#tipo_user1" ).click(function() {
+        $( "#nombre_cuenta" ).html('Nombre o Razón Social');
+        $( "#div_rif" ).show();
+        $( "#div_direccion" ).show();
+        $( "#div_objetivos" ).show();
+    });
+
+    $( "#tipo_user2" ).click(function() {
+        $( "#nombre_cuenta" ).html('Nombre y Apellido');
+        $( "#div_rif" ).hide();
+        $( "#div_direccion" ).hide();
+        $( "#div_objetivos" ).hide();
+    });
+});
+
+</script>
+
 @endsection
