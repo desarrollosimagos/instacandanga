@@ -47,3 +47,5 @@ Route::get('auth/google/callback', 'HomeController@handleProviderCallbackGoogle'
 
 Route::get('auth/instagram', 'InstagramRegisterController@redirectToProviderInstagram');
 Route::get('auth/instagram/callback', 'InstagramRegisterController@handleProviderCallbackInstagram');
+
+Route::get('instagram/login', 'InstagramRegisterController@redirectToProviderInstagramLogin');

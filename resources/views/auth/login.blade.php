@@ -69,6 +69,15 @@
                                 </a>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <div class="col-md-8 col-md-offset-4">
+                                <a class="btn btn-primary" style="background-color: #3f729b;border-color: #3f729b;" href="/instagram/login">
+                                    Iniciar sesion con Instagram
+                                </a>
+                            </div>
+                        </div>
+                        
                     </form>
                 </div>
             </div>

@@ -55,9 +55,16 @@ class InstagramRegisterController extends Controller
 
     public function redirectToProviderInstagram()
     {
-
+        \Session::flash('type', 'register');
         return Socialite::driver('instagram')->redirect();
     }
+
+    public function redirectToProviderInstagramLogin()
+    {
+        \Session::flash('type', 'login');
+        return Socialite::driver('instagram')->redirect();
+    }
+
 
     /**
      * Obtain the user information from Twitter.
@@ -67,6 +74,9 @@ class InstagramRegisterController extends Controller
 
     public function handleProviderCallbackInstagram()
     {
+        $type = session('type');
+        //echo var_dump($type);
+        //exit;
         try {
             $user = Socialite::driver('instagram')->user();
         } catch (Exception $e) {
@@ -77,7 +87,19 @@ class InstagramRegisterController extends Controller
 
         //Auth::login($authUser, true);
         if(!$authUser){
-            \Session::flash('error', 'La cuenta con la que se desea registrarse ya esta asociada a un usuario. Intente con otra cuenta.');
+            //$type = session('type');
+            if($type == 'login'){
+               //Auth::login($authUser, true);
+               $user_count = DB::table('users')->where('instagram_id', $user->id)->first();
+               
+               Auth::loginUsingId($user_count->id);
+
+               //echo var_dump($user_count);
+               //exit;
+            }
+            if($type == 'register'){
+                \Session::flash('error', 'La cuenta con la que se desea registrarse ya esta asociada a un usuario. Intente con otra cuenta.');   
+            }
         }else{
             if($authUser->id > 0){
                 \Session::flash('instagram_id', $authUser->instagram_id);

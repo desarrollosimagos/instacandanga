@@ -182,15 +182,21 @@ $(function () {
     $( "#tipo_user1" ).click(function() {
         $( "#nombre_cuenta" ).html('Nombre o Razón Social');
         $( "#div_rif" ).show();
+        $( "#rif_cuenta" ).val('');
         $( "#div_direccion" ).show();
+        $( "#direccio" ).val('');
         $( "#div_objetivos" ).show();
+        $( "#objetivos" ).val('');
     });
 
     $( "#tipo_user2" ).click(function() {
         $( "#nombre_cuenta" ).html('Nombre y Apellido');
         $( "#div_rif" ).hide();
+        $( "#rif_cuenta" ).val('null');
         $( "#div_direccion" ).hide();
+        $( "#direccio" ).val('null');
         $( "#div_objetivos" ).hide();
+        $( "#objetivos" ).val('null');
     });
 });
 
