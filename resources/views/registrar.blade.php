@@ -10,7 +10,7 @@
                     <div class="col-md-12">
                         <a href="/auth/instagram" >
                             <img src="img/Instagram-logo-png-icon.png" style="height:100px;">
-                            <img src="img/registrate.png" style="height:120px;">
+                            <img src="img/reg.png" style="height:120px;">
                         </a>
                     </div>
                 </div>
