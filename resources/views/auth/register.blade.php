@@ -62,7 +62,7 @@
                                     <label for="name" id="rif_cuenta" class="col-md-4 control-label">Rif</label>
 
                                     <div class="col-md-6">
-                                        <input id="rif" type="text" class="form-control" name="rif" value="{{ old('rif') }}" required autofocus>
+                                        <input id="rif" type="text" class="form-control" name="rif" value="{{ old('rif') }}">
 
                                         @if ($errors->has('rif'))
                                             <span class="help-block">
@@ -76,7 +76,7 @@
                                     <label for="direccion" class="col-md-4 control-label">Dirección</label>
 
                                     <div class="col-md-6">
-                                        <input id="direccion" type="text" class="form-control" name="direccion" value="{{ old('direccion') }}" required autofocus>
+                                        <input id="direccion" type="text" class="form-control" name="direccion" value="{{ old('direccion') }}">
 
                                         @if ($errors->has('direccion'))
                                             <span class="help-block">
@@ -90,7 +90,7 @@
                                     <label for="objetivos" class="col-md-4 control-label">Objetivos</label>
 
                                     <div class="col-md-6">
-                                        <input id="objetivos" type="text" class="form-control" name="objetivos" value="{{ old('objetivos') }}" required autofocus>
+                                        <input id="objetivos" type="text" class="form-control" name="objetivos" value="{{ old('objetivos') }}">
 
                                         @if ($errors->has('objetivos'))
                                             <span class="help-block">
