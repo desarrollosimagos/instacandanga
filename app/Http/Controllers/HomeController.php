@@ -27,9 +27,12 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+     protected $mailer;
+
+    public function __construct(Mailer $mailer)
     {
         $this->middleware('auth');
+        $this->mailer = $mailer;
     }
 
     /**
