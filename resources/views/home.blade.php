@@ -92,7 +92,7 @@
                     </nav>
 
                     <nav class="navbar navbar-default">
-                        @foreach ($google as $key => $lnk)
+                        @foreach ($twitter as $key => $lnk)
                             <div class="col-sm-3 col-md-3">
                                 <div class="thumbnail">
                                     <img src="{{ $lnk->avatar }}" alt="...">
@@ -123,7 +123,7 @@
                     </nav>
 
                     <nav class="navbar navbar-default">
-                        @foreach ($twitter as $key => $lnk)
+                        @foreach ($google as $key => $lnk)
                             <div class="col-sm-3 col-md-3">
                                 <div class="thumbnail">
                                     <img src="{{ $lnk->avatar }}" alt="...">
