@@ -35,13 +35,8 @@ Route::get('/colectivos/add', 'HomeController@colectivos_add');
 
 Route::get('search/autocomplete', 'SearchController@autocomplete');
 
+Route::get('/terminar', 'HomeController@terminar');
 
-Route::get('/salir', function(){
-
-Sentry::logout();
-
-return Redirect::to('/');
-    });
 
 Route::get('/facebook', 'HomeController@facebook');
 Route::get('/carnet', 'HomeController@carnet');

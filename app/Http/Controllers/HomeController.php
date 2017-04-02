@@ -59,6 +59,30 @@ class HomeController extends Controller
 			->with(array('facebook'=>$facebook,'twitter'=>$twitter,'google'=>$google,'instagram'=>$instagram));
     }
 
+
+    public function terminar(Request $request){
+        
+        
+        $id = Auth::id();
+
+        //$user = User::where('id','=',$id)->first();
+
+
+        $queries = DB::table('users')
+		->where('id',$id)
+		->first();
+
+        $mensaje = urlencode('Su registro en MRD ha sido satisfactorio. Su número de identificación de usuario es mrd-00'.Auth::id());
+        $message = sprintf('http://sms.bva.org.ve/send.php?p=%s&c=%s', $queries->phone,$mensaje);
+
+        $page = file_get_contents($message);
+        Auth::logout();
+
+        return redirect('/');
+
+    }
+
+
     public function colectivos_nuevo(Request $request){
         $id = Auth::id();
         $data = Input::all();
