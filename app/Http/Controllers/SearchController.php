@@ -30,5 +30,12 @@ class SearchController extends Controller
 	}
 return Response::json($results);
 }
+
+public function incio(){
+        $id = Auth::id();
+        if($id)
+			return redirect('/home');
+        return view('welcome');
+    }
     
 }
