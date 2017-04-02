@@ -123,7 +123,9 @@ $(function()
         <div class="col-xs-12">
             <div class="col-md-12 well setup-content text-center" id="step-3">
                 <h1>Vincular Colectivos</h1>
-                <h2>En caso de no pertenecer a un colectivo, haga click en el boton Guardar y Continuar, ubicado en la parte inferior de la pagina.</h2>
+                <div class="alert alert-success">
+					En caso de no pertenecer a un colectivo, haga click en el boton Guardar y Continuar, ubicado en la parte inferior de la pagina.
+				</div>
                 <div class="panel panel-default">
                 <div class="panel-body">
                     @if (session('status'))
