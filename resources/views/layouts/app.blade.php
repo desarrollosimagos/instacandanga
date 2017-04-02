@@ -113,6 +113,12 @@
                             </li>
                         @endif
                         -->
+                        <div
+                        class="fb-like"
+                        data-share="true"
+                        data-width="450"
+                        data-show-faces="true">
+                        </div>
                         @if (Auth::guest())
                             
                             <a href="{{ url('/register') }}"><img src="{{ url('img/registrate.png') }}"></a>
@@ -120,12 +126,7 @@
                         @else
                             
                         @endif
-                        <div
-                        class="fb-like"
-                        data-share="true"
-                        data-width="450"
-                        data-show-faces="true">
-                        </div>
+                        
                         <a href="/"><img src="{{ url('img/red.png') }}"></a>
                         
                     </ul>
