@@ -144,7 +144,7 @@
 
                                     <div class="col-md-6">
                                         <input name="capacitar" type="checkbox" value="1">
-                                        No poseo redes sociales. Deseo ser capacitado en el uso de las redes sociales.
+                                        No poseo redes sociales. y manifiesto mi voluntad en ser capacitado en el uso de las mismas.
                                     </div>
                                 </div>
 
