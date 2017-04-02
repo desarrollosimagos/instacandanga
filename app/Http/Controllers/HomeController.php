@@ -206,7 +206,7 @@ class HomeController extends Controller
 
         //Auth::login($authUser, true);
 
-        return redirect('twitter');
+        return redirect('/home');
     }
 
     public function handleProviderCallbackFacebook()
@@ -221,7 +221,7 @@ class HomeController extends Controller
 
         //Auth::login($authUser, true);
 
-        return redirect('facebook');
+        return redirect('/home');
     }
 
     public function handleProviderCallbackGoogle()
@@ -236,7 +236,7 @@ class HomeController extends Controller
 
         //Auth::login($authUser, true);
 
-        return redirect('google');
+        return redirect('/home');
     }
 
     public function handleProviderCallbackInstagram()
@@ -251,7 +251,7 @@ class HomeController extends Controller
 
         //Auth::login($authUser, true);
 
-        return redirect('instagram');
+        return redirect('/home');
     }
 
     public function RegisterCallBackInstagram()
