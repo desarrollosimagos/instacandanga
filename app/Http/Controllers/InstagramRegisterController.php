@@ -127,19 +127,17 @@ class InstagramRegisterController extends Controller
         if($driver == 'instagram'){
 
             $authUser = instagram::where('instagram_id', $socialUser->id)->first();
-            //$id = Auth::id();
+            $id = Auth::id();
             if ($authUser){
-                $existUser = User::where('instagram_id', $authUser->instagram_id)->first();
-
-                if ($existUser)
-                    return False;
                 return $authUser;
             }
+            
             return instagram::create([
                 'name' => $socialUser->name,
                 'handle' => $socialUser->nickname,
                 'instagram_id' => $socialUser->id,
                 'avatar' => $socialUser->avatar,
+                'user_id' => $id,
             ]);
         }
 
