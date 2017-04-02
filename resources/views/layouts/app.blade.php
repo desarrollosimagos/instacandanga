@@ -120,13 +120,14 @@
                         @else
                             
                         @endif
-                        <a href="/"><img src="{{ url('img/red.png') }}"></a>
                         <div
                         class="fb-like"
                         data-share="true"
                         data-width="450"
                         data-show-faces="true">
                         </div>
+                        <a href="/"><img src="{{ url('img/red.png') }}"></a>
+                        
                     </ul>
                 </div>
             </div>
