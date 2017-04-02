@@ -38,7 +38,7 @@ class ActivationService
 
 
 
-        $message = sprintf('Su codigo de verificación es el siguiente: %s  ,Use el siguiente enlace para activar su cuenta: https://mrd.net.ve/user/activation/%s', $token);
+        $message = sprintf('Su codigo de verificación es el siguiente: %s  ,Use el siguiente enlace para activar su cuenta: https://mrd.net.ve/user/activation/%s', $token, $token);
 
         $this->mailer->raw($message, function (Message $m) use ($user) {
             $m->to($user->email)->subject('Correo de Activación.');
