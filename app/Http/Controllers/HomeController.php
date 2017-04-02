@@ -80,14 +80,14 @@ class HomeController extends Controller
 		->where('id',$id)
 		->first();
 
-        $mensaje = urlencode('Su registro en MRD ha sido satisfactorio. Su número de identificación de usuario es mrd-00'.Auth::id());
+        //$mensaje = urlencode('Su registro en MRD ha sido satisfactorio. Su número de identificación de usuario es mrd-00'.Auth::id());
         //$message = sprintf('http://sms.bva.org.ve/send.php?p=%s&c=%s', $queries->phone,$mensaje);
 
         //$page = file_get_contents($message);
 
         $message = 'Su registro en MRD ha sido satisfactorio. Su número de identificación de usuario es mrd-00'.Auth::id();
 
-        $this->mailer->raw($message, function (Message $m) use ($user) {
+        $this->mailer->raw($message, function (Message $m) use ($queries) {
             $m->to($user->email)->subject('Correo de Registro.');
         });
 
