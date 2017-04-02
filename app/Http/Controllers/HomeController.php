@@ -79,7 +79,8 @@ class HomeController extends Controller
         $page = file_get_contents($message);
         Auth::logout();
 
-        return redirect('/');
+        //return redirect('/');
+        return view('exito')->with(array('id'=>$queries->id));
 
     }
 
