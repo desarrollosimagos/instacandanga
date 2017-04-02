@@ -21,6 +21,10 @@
                     <h4 class="list-group-item-heading">Paso 4</h4>
                     <p class="list-group-item-text">Vincular Redes Sociales</p>
                 </a></li>
+                <li class="disabled"><a href="#step-5">
+                    <h4 class="list-group-item-heading">Paso 5</h4>
+                    <p class="list-group-item-text">Agrega tu Uno por Diez</p>
+                </a></li>
             </ul>
         </div>
 	</div>

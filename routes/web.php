@@ -32,8 +32,12 @@ Route::get('/registrar', 'InstagramRegisterController@index');
 
 Route::get('/colectivos', 'HomeController@colectivos');
 
+Route::get('/unopordiez', 'HomeController@unopordiez');
+
 Route::get('/colectivos/nuevo', 'HomeController@colectivos_nuevo');
 Route::get('/colectivos/add', 'HomeController@colectivos_add');
+
+Route::get('/unopordiez/nuevo', 'HomeController@persons_nuevo');
 
 Route::get('search/autocomplete', 'SearchController@autocomplete');
 

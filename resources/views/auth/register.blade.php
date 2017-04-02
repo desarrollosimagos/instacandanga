@@ -22,6 +22,10 @@
                     <h4 class="list-group-item-heading">Paso 4</h4>
                     <p class="list-group-item-text">Vincular Redes Sociales</p>
                 </a></li>
+                <li class="disabled"><a href="#step-5">
+                    <h4 class="list-group-item-heading">Paso 5</h4>
+                    <p class="list-group-item-text">Agrega tu Uno por Diez</p>
+                </a></li>
             </ul>
         </div>
 	</div>
@@ -42,8 +46,22 @@
                         @else
                             <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
                                 {{ csrf_field() }}
+                                <div class="form-group{{ $errors->has('cedula') ? ' has-error' : '' }}">
+                                    <label for="cedula" id="nombre_cuenta" class="col-md-4 control-label">Cedula</label>
+
+                                    <div class="col-md-6">
+                                        <input id="cedula" type="text" class="form-control" name="cedula" value="{{ old('cedula') }}" required autofocus>
+
+                                        @if ($errors->has('cedula'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('cedula') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                    <label for="name" id="nombre_cuenta" class="col-md-4 control-label">Nombre</label>
+                                    <label for="name" id="nombre_cuenta" class="col-md-4 control-label">Nombres</label>
 
                                     <div class="col-md-6">
                                         <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
@@ -51,6 +69,20 @@
                                         @if ($errors->has('name'))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('name') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group{{ $errors->has('apellido') ? ' has-error' : '' }}">
+                                    <label for="apellido" id="nombre_cuenta" class="col-md-4 control-label">Apellidos</label>
+
+                                    <div class="col-md-6">
+                                        <input id="apellido" type="text" class="form-control" name="apellido" value="{{ old('apellido') }}" required autofocus>
+
+                                        @if ($errors->has('apellido'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('apellido') }}</strong>
                                             </span>
                                         @endif
                                     </div>
@@ -104,6 +136,15 @@
 
                                     <div class="col-md-6">
                                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="password-confirm" class="col-md-4 control-label"></label>
+
+                                    <div class="col-md-6">
+                                        <input name="capacitar" type="checkbox" value="1">
+                                        No poseo redes sociales. Deseo ser capacitado en el uso de las redes sociales.
                                     </div>
                                 </div>
 

@@ -31,6 +31,22 @@ class SearchController extends Controller
 return Response::json($results);
 }
 
+public function autocomplete2(){
+	$term = Input::get('term');
+	
+	$results = array();
+	
+	$queries = DB::table('personas')
+		->where('name', 'LIKE', '%'.$term.'%')
+		->take(5)->get();
+	
+	foreach ($queries as $query)
+	{
+	    $results[] = [ 'id' => $query->id, 'value' => $query->name];
+	}
+	return Response::json($results);
+}
+
 public function incio(){
         $id = Auth::id();
         if($id)

@@ -18,7 +18,7 @@ $.ajaxSetup({
 
 $(function()
 {
-	 $( "#q" ).autocomplete({
+	 $( "#q2" ).autocomplete({
 	  source: "search/autocomplete",
       minLength: 5,
 	  select: function(event, ui) {
@@ -31,7 +31,7 @@ $(function()
 
     $( "#add_colectivo" ).click(function() {
         if($('#q').val() == ''){
-            alert('Debe ingresar el nombre del colectivo que desea agregar');
+            alert('Debe ingresar la cedula de la persona que desea agregar');
         }else{
             $('#nombre_colectivo').html($('#q').val());
             $('#add_colectivo_id').val($('#q_id').val());
@@ -44,7 +44,7 @@ $(function()
         if($('#q_id').val()>0){
             $.ajax({
                 method: "GET",
-                url: "/colectivos/add",
+                url: "/unopordiez/add",
                 data: { id: $('#q_id').val() }
                 })
                 .done(function( msg ) {
@@ -71,18 +71,19 @@ $(function()
     $( "#btn_add_new_co" ).click(function() {
         $.ajax({
             method: "GET",
-            url: "/colectivos/nuevo",
-            data: { name: $('#q').val(), mail: $('#mail_colectivo').val() }
+            url: "/unopordiez/nuevo",
+            data: { cedula: $('#q').val(), name: $('#name_persona').val(),phone: $('#phone_persona').val() }
             })
             .done(function( msg ) {
                 if(msg == 'Exitoso'){
                     $('#myModal2').modal('hide'); 
-                    $('#lista_colectivos').append('<tr><td>'+$('#q').val()+'</td></tr>');
+                    $('#lista_colectivos').append('<tr><td>'+$('#q').val()+'</td><td>'+$('#name_persona').val()+'</td><td>'+$('#phone_persona').val()+'</td></tr>');
                 }else{
                     $('#myModal2').modal('hide'); 
                     
                 }
-                $('#mail_colectivo').val('');
+                $('#name_persona').val('');
+                $('#phone_persona').val('');
                 $('#q').val('');
                 $('#q_id').val('');
         });
@@ -104,7 +105,7 @@ $(function()
                     <h4 class="list-group-item-heading">Paso 2</h4>
                     <p class="list-group-item-text">Verificar datos de Contacto</p>
                 </a></li>
-                <li class="active"><a href="#step-3">
+                <li class="disabled"><a href="#step-3">
                     <h4 class="list-group-item-heading">Paso 3</h4>
                     <p class="list-group-item-text">Vincular Colectivos</p>
                 </a></li>
@@ -112,7 +113,7 @@ $(function()
                     <h4 class="list-group-item-heading">Paso 4</h4>
                     <p class="list-group-item-text">Vincular Redes Sociales</p>
                 </a></li>
-                <li class="disabled"><a href="#step-5">
+                <li class="active"><a href="#step-5">
                     <h4 class="list-group-item-heading">Paso 5</h4>
                     <p class="list-group-item-text">Agrega tu Uno por Diez</p>
                 </a></li>
@@ -122,7 +123,7 @@ $(function()
     <div class="row">
         <div class="col-xs-12">
             <div class="col-md-12 well setup-content text-center" id="step-3">
-                <h1>Vincular Colectivos</h1>
+                <h1>Uno Por Diez</h1>
                 <div class="panel panel-default">
                 <div class="panel-body">
                     @if (session('status'))
@@ -140,7 +141,7 @@ $(function()
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('code') ? ' has-error' : '' }}">
-                            <label for="code" class="col-md-4 control-label">Ingrese el nombre del Colectivo</label>
+                            <label for="code" class="col-md-4 control-label">Ingrese un número de cedula</label>
 
                             <div class="col-md-6">
                                 <input id="q" type="text" class="form-control" name="q">
@@ -159,8 +160,9 @@ $(function()
                         </div>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <a href="/home" class="btn btn-primary">
-                                    Guardar y Continuar
+                                <a href="/terminar"
+                                class="btn btn-primary">
+                                    Finalizar registro.
                                 </a>
                             </div>
                         </div>
@@ -176,15 +178,15 @@ $(function()
         <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Agregar Colectivo</h4>
+            <h4 class="modal-title" id="myModalLabel">Agregar Persona</h4>
         </div>
         <div class="modal-body">
-            Desea agregarse como miembro del colectivo <p id="nombre_colectivo">Pandilla ros</p>
+            <p id="nombre_colectivo"></p>
             <input id="add_colectivo_id" type="hidden" class="form-control" name="add_colectivo_id">
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-primary" id="btn_add_co">Agregar Colectivo</button>
+            <button type="button" class="btn btn-primary" id="btn_add_co">Agregar </button>
         </div>
         </div>
     </div>
@@ -195,30 +197,37 @@ $(function()
         <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Agregar Nuevo Colectivo</h4>
+            <h4 class="modal-title" id="myModalLabel">Agregar Persona</h4>
         </div>
         <div class="modal-body">
             <form class="form-horizontal" role="form">
                 <div class="form-group{{ $errors->has('code') ? ' has-error' : '' }}">
-                    <label for="code" class="col-md-4 control-label">Razón Social</label>
-
+                    <label for="code" class="col-md-4 control-label">Cedula de Identidad</label>
                     <div class="col-md-6">
                         <p id="nombre_colectivo2"></p>
                     </div>
                 </div>
 
                 <div class="form-group{{ $errors->has('code') ? ' has-error' : '' }}">
-                    <label for="code" class="col-md-4 control-label">Correo Electrónico</label>
+                    <label for="code" class="col-md-4 control-label">Nombre y Apellido</label>
 
                     <div class="col-md-6">
-                        <input id="mail_colectivo" type="text" class="form-control" name="mail_colectivo">
+                        <input id="name_persona" type="text" class="form-control" name="name_persona">
                     </div>
                 </div>
+                <div class="form-group{{ $errors->has('code') ? ' has-error' : '' }}">
+                    <label for="code" class="col-md-4 control-label">Celular</label>
+
+                    <div class="col-md-6">
+                        <input id="phone_persona" type="text" class="form-control" name="phone_persona">
+                    </div>
+                </div>
+                
             </form>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-primary" id="btn_add_new_co">Guardar Registro</button>
+            <button type="button" class="btn btn-primary" id="btn_add_new_co">Agregar</button>
         </div>
         </div>
     </div>

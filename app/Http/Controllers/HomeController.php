@@ -11,6 +11,7 @@ use App\google;
 use App\instagram;
 use App\Colectivos;
 use App\Digitales;
+use App\Persons;
 use Socialite;
 use Illuminate\Support\Facades\Auth;
 use DB;
@@ -82,6 +83,26 @@ class HomeController extends Controller
 
     }
 
+    public function persons_nuevo(Request $request){
+        $id = Auth::id();
+        $data = Input::all();
+
+        $persons = new Persons;
+
+        $persons->name = $data['name'];
+        $persons->cedula = $data['cedula'];
+        $persons->phone = $data['phone'];
+        $persons->user_id = $id;
+
+        if($persons->save()){
+            $result = 'Exitoso';
+        }else{
+            $result = 'Fallido';
+        }
+
+        return $result;
+    }
+
 
     public function colectivos_nuevo(Request $request){
         $id = Auth::id();
@@ -127,6 +148,15 @@ class HomeController extends Controller
         if(!$value)
             return redirect('/');
         return view('colectivos');
+    }
+
+    public function unopordiez(Request $request){
+        $id = Auth::id();
+        $value = False;
+        $value = $request->session()->get('user_id');
+        if(!$value)
+            return redirect('/');
+        return view('unopordiez');
     }
 
     public function facebook(){

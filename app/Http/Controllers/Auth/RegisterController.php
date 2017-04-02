@@ -55,10 +55,13 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            'cedula' => 'required|max:255',
             'name' => 'required|max:255',
+            'apellido' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
 			'phone' => 'required|max:100|unique:users',
             'password' => 'required|min:6|confirmed',
+            'capacitar' => '',
         ]);
     }
 
@@ -70,11 +73,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        if(!isset($data['capacitar']))
+            $data['capacitar'] = '0';
         return User::create([
+            'cedula' => $data['cedula'],
             'name' => $data['name'],
+            'apellido' => $data['apellido'],
             'email' => $data['email'],
 			'phone' => $data['phone'],
             'password' => bcrypt($data['password']),
+            'capacitar' => $data['capacitar'],
         ]);
     }
 	
@@ -100,6 +108,9 @@ class RegisterController extends Controller
         if ($user = $this->activationService->activateUser($token)) {
             
             $request->session()->put('user_id',$user->id);
+            if($user->capacitar)
+                return view('exito')->with(array('id'=>$user->id));
+            //exit;
             //$value = $request->session()->get('user_id');
             //echo $value;
             //$request->session()->get('user', $user);
