@@ -158,20 +158,20 @@ class HomeController extends Controller
     }
 
      public function colectivos(Request $request){
-        $id = false;
         $id = Auth::id();
-        //$value = False;
-        //$value = $request->session()->get('user_id');
-        if(!$id)
+        $value = False;
+        $value = $request->session()->get('user_id');
+        if(!$value)
             return redirect('/');
         return view('colectivos');
     }
 
     public function unopordiez(Request $request){
+        $id = false;
         $id = Auth::id();
         $value = False;
         $value = $request->session()->get('user_id');
-        if(!$value)
+        if(!$id)
             return redirect('/');
         return view('unopordiez');
     }
