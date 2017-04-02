@@ -92,7 +92,18 @@
                     </nav>
 
                     <nav class="navbar navbar-default">
-                        
+                        @foreach ($google as $key => $lnk)
+                            <div class="col-sm-3 col-md-3">
+                                <div class="thumbnail">
+                                    <img src="{{ $lnk->avatar }}" alt="...">
+                                    <div class="caption">
+                                        <h3>{{ $lnk->handle }}</h3>
+                                        <p><a href="#" class="btn btn-primary" role="button">Eliminar</a> 
+                                        <a href="#" class="btn btn-default" role="button">Publicar</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
                     </nav>
 
                     <nav class="navbar navbar-default">
@@ -112,7 +123,18 @@
                     </nav>
 
                     <nav class="navbar navbar-default">
-                        
+                        @foreach ($twitter as $key => $lnk)
+                            <div class="col-sm-3 col-md-3">
+                                <div class="thumbnail">
+                                    <img src="{{ $lnk->avatar }}" alt="...">
+                                    <div class="caption">
+                                        <h3>{{ $lnk->handle }}</h3>
+                                        <p><a href="#" class="btn btn-primary" role="button">Eliminar</a> 
+                                        <a href="#" class="btn btn-default" role="button">Publicar</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
                     </nav>
                     
                     <nav class="navbar navbar-default">
@@ -132,7 +154,18 @@
                     </nav>
 
                     <nav class="navbar navbar-default">
-                        
+                        @foreach ($instagram as $key => $lnk)
+                            <div class="col-sm-3 col-md-3">
+                                <div class="thumbnail">
+                                    <img src="{{ $lnk->avatar }}" alt="...">
+                                    <div class="caption">
+                                        <h3>{{ $lnk->handle }}</h3>
+                                        <p><a href="#" class="btn btn-primary" role="button">Eliminar</a> 
+                                        <a href="#" class="btn btn-default" role="button">Publicar</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
                     </nav>
 
                     <a href="{{ route('logout') }}"

@@ -56,7 +56,7 @@ class HomeController extends Controller
 			->get();
 
         return view('home')
-			->with(array('facebook'=>$facebook));
+			->with(array('facebook'=>$facebook,'twitter'=>$twitter,'google'=>$google,'instagram'=>$instagram));
     }
 
     public function colectivos_nuevo(Request $request){

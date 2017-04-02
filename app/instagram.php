@@ -9,6 +9,6 @@ class instagram extends Model
     protected $table = 'instagram';
 
     protected $fillable = [
-        'name', 'handle','instagram_id', 'avatar'
+        'name', 'handle','instagram_id', 'avatar','user_id'
     ];
 }
