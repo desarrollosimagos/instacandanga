@@ -88,7 +88,7 @@ class HomeController extends Controller
         $message = 'Su registro en MRD ha sido satisfactorio. Su número de identificación de usuario es mrd-00'.Auth::id();
 
         $this->mailer->raw($message, function (Message $m) use ($queries) {
-            $m->to($user->email)->subject('Correo de Registro.');
+            $m->to($queries->email)->subject('Correo de Registro.');
         });
 
         Auth::logout();
