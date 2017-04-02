@@ -28,6 +28,21 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 Route::get('/registrar', 'InstagramRegisterController@index');
 
+Route::get('/colectivos', 'HomeController@colectivos');
+
+Route::get('/colectivos/nuevo', 'HomeController@colectivos_nuevo');
+Route::get('/colectivos/add', 'HomeController@colectivos_add');
+
+Route::get('search/autocomplete', 'SearchController@autocomplete');
+
+
+Route::get('/salir', function(){
+
+Sentry::logout();
+
+return Redirect::to('/');
+    });
+
 Route::get('/facebook', 'HomeController@facebook');
 Route::get('/carnet', 'HomeController@carnet');
 Route::get('/twitter', 'HomeController@twitter');

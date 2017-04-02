@@ -1,49 +1,47 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Registro</div>
-                <div class="panel-body">
-                    @if (Session::has('error'))
-                        <div class="alert alert-warning alert-dismissable">
-                            <strong>¡Error!</strong> {{ session('error') }}
-                        </div>
-                        <a href="/registrar" class="btn btn-primary">
-                            Volver al registro.
-                        </a>
-                    @else
-                        @if (Session::has('instagram_id'))
-                            <div class="row">
-                                <div class="col-sm-12 col-md-3">
-                                    <div class="thumbnail">
-                                        <img src="{{ session('avatar') }}" alt="...">
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-9">
-                                    <h1>Cuenta de Instagram:</h1>
-                                    <h1 style='font-family: "Homer Simpson", cursive;'>{{ session('handle') }}</h1>
-                                </div>
-                            </div>
 
+<div class="container">
+	<div class="row form-group">
+        <div class="col-xs-12">
+            <ul class="nav nav-pills nav-justified thumbnail setup-panel">
+                <li class="active"><a href="#step-1">
+                    <h4 class="list-group-item-heading">Paso 1</h4>
+                    <p class="list-group-item-text">Datos Personales</p>
+                </a></li>
+                <li class="disabled"><a href="#step-2">
+                    <h4 class="list-group-item-heading">Paso 2</h4>
+                    <p class="list-group-item-text">Verificar datos de Contacto</p>
+                </a></li>
+                <li class="disabled"><a href="#step-3">
+                    <h4 class="list-group-item-heading">Paso 3</h4>
+                    <p class="list-group-item-text">Vincular Colectivos</p>
+                </a></li>
+                <li class="disabled"><a href="#step-4">
+                    <h4 class="list-group-item-heading">Paso 4</h4>
+                    <p class="list-group-item-text">Vincular Redes Sociales</p>
+                </a></li>
+            </ul>
+        </div>
+	</div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="col-md-12 well setup-content text-center" id="step-1">
+                <h1>Registro de Datos Personales</h1>
+                <div class="panel panel-default">
+                
+                    <div class="panel-body">
+                        @if (Session::has('error'))
+                            <div class="alert alert-warning alert-dismissable">
+                                <strong>¡Error!</strong> {{ session('error') }}
+                            </div>
+                            <a href="/registrar" class="btn btn-primary">
+                                Volver al registro.
+                            </a>
+                        @else
                             <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
                                 {{ csrf_field() }}
-                                <input id="instagram_id" type="hidden" name="instagram_id" value="{{ session('instagram_id') }}">
-
-                                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                    <label for="name" class="col-md-4 control-label"></label>
-
-                                    <div class="col-md-6">
-                                        <ul>
-                                            <li style="list-style-type: none;"><input type="radio" name="tipo_user" value="colectivo" id="tipo_user1"> Soy un colectivo.</li>
-                                            <li style="list-style-type: none;"><input type="radio" name="tipo_user" value="natural" id="tipo_user2"> Soy una persona.</li>
-                                        </ul>
-                                        
-                                    </div>
-                                </div>
-
                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                     <label for="name" id="nombre_cuenta" class="col-md-4 control-label">Nombre</label>
 
@@ -53,48 +51,6 @@
                                         @if ($errors->has('name'))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('name') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <div id="div_rif" class="form-group{{ $errors->has('rif') ? ' has-error' : '' }}">
-                                    <label for="name" id="rif_cuenta" class="col-md-4 control-label">Rif</label>
-
-                                    <div class="col-md-6">
-                                        <input id="rif" type="text" class="form-control" name="rif" value="{{ old('rif') }}">
-
-                                        @if ($errors->has('rif'))
-                                            <span class="help-block">
-                                                <strong>{{ $errors->first('rif') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <div id="div_direccion" class="form-group{{ $errors->has('direccion') ? ' has-error' : '' }}">
-                                    <label for="direccion" class="col-md-4 control-label">Dirección</label>
-
-                                    <div class="col-md-6">
-                                        <input id="direccion" type="text" class="form-control" name="direccion" value="{{ old('direccion') }}">
-
-                                        @if ($errors->has('direccion'))
-                                            <span class="help-block">
-                                                <strong>{{ $errors->first('direccion') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <div id="div_objetivos" class="form-group{{ $errors->has('objetivos') ? ' has-error' : '' }}">
-                                    <label for="objetivos" class="col-md-4 control-label">Objetivos</label>
-
-                                    <div class="col-md-6">
-                                        <input id="objetivos" type="text" class="form-control" name="objetivos" value="{{ old('objetivos') }}">
-
-                                        @if ($errors->has('objetivos'))
-                                            <span class="help-block">
-                                                <strong>{{ $errors->first('objetivos') }}</strong>
                                             </span>
                                         @endif
                                     </div>
@@ -159,16 +115,8 @@
                                     </div>
                                 </div>
                             </form>
-                        @else
-                            <div class="alert alert-warning alert-dismissable">
-                                <strong>¡Error!</strong> Se presento error. Vuelva a intentarlo.
-                            </div>
-                            <a href="/registrar" class="btn btn-primary">
-                                Volver al registro.
-                            </a>
                         @endif
-                    @endif
-                    
+                    </div>
                 </div>
             </div>
         </div>
@@ -177,27 +125,40 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
 
 <script type="text/javascript">
+$(document).ready(function() {
+    
+    var navListItems = $('ul.setup-panel li a'),
+        allWells = $('.setup-content');
+
+    allWells.hide();
+
+    navListItems.click(function(e)
+    {
+        e.preventDefault();
+        var $target = $($(this).attr('href')),
+            $item = $(this).closest('li');
+        
+        if (!$item.hasClass('disabled')) {
+            navListItems.closest('li').removeClass('active');
+            $item.addClass('active');
+            allWells.hide();
+            $target.show();
+        }
+    });
+    
+    $('ul.setup-panel li.active a').trigger('click');
+    
+    // DEMO ONLY //
+    $('#activate-step-2').on('click', function(e) {
+        $('ul.setup-panel li:eq(1)').removeClass('disabled');
+        $(this).remove();
+    })    
+});
+
 
 $(function () {
-    $( "#tipo_user1" ).click(function() {
-        $( "#nombre_cuenta" ).html('Nombre o Razón Social');
-        $( "#div_rif" ).show();
-        $( "#rif_cuenta" ).val('');
-        $( "#div_direccion" ).show();
-        $( "#direccio" ).val('');
-        $( "#div_objetivos" ).show();
-        $( "#objetivos" ).val('');
-    });
-
-    $( "#tipo_user2" ).click(function() {
-        $( "#nombre_cuenta" ).html('Nombre y Apellido');
-        $( "#div_rif" ).hide();
-        $( "#rif_cuenta" ).val('null');
-        $( "#div_direccion" ).hide();
-        $( "#direccio" ).val('null');
-        $( "#div_objetivos" ).hide();
-        $( "#objetivos" ).val('null');
-    });
+    
+    
 });
 
 </script>

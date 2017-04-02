@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+//use Illuminate\Support\Facades\Response;
 use App\twitter;
 use App\facebook;
 use App\google;
 use App\instagram;
+use App\Colectivos;
+use App\Digitales;
 use Socialite;
 use Illuminate\Support\Facades\Auth;
 use DB;
@@ -30,7 +34,75 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $id = Auth::id();
+        $facebook = DB::table('facebook')
+			->distinct()
+			->where('facebook.user_id',$id)
+			->get();
+        
+        $twitter = DB::table('twitters')
+			->distinct()
+			->where('twitters.user_id',$id)
+			->get();
+
+        $google = DB::table('google')
+			->distinct()
+			->where('google.user_id',$id)
+			->get();
+
+        $instagram = DB::table('instagram')
+			->distinct()
+			->where('instagram.user_id',$id)
+			->get();
+
+        return view('home')
+			->with(array('facebook'=>$facebook));
+    }
+
+    public function colectivos_nuevo(Request $request){
+        $id = Auth::id();
+        $data = Input::all();
+
+        $colectivo = new Colectivos;
+
+        $colectivo->name = $data['name'];
+        $colectivo->avatar = $data['mail'];
+        $colectivo->user_id = $id;
+
+        if($colectivo->save()){
+            $result = 'Exitoso';
+        }else{
+            $result = 'Fallido';
+        }
+
+        return $result;
+    }
+
+    public function colectivos_add(Request $request){
+        $id = Auth::id();
+        $data = Input::all();
+
+        $colectivo = new Digitales;
+
+        $colectivo->colectivo_id = $data['id'];
+        $colectivo->user_id = $id;
+
+        if($colectivo->save()){
+            $result = 'Exitoso';
+        }else{
+            $result = 'Fallido';
+        }
+
+        return $result;
+    }
+
+     public function colectivos(Request $request){
+        $id = Auth::id();
+        $value = False;
+        $value = $request->session()->get('user_id');
+        if(!$value)
+            return redirect('/');
+        return view('colectivos');
     }
 
     public function facebook(){

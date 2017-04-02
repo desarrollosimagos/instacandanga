@@ -28,8 +28,8 @@
             <div class="container">
                 
                     <div class="row">
-                        <div class="col-md-6 text-left"><img src="{{ url('img/gob.png') }}"></div>
-                        <div class="col-md-6 text-right"><img src="{{ url('img/zam.png') }}"></div>
+                        <div class="col-md-6 text-left"><a href="/"><img src="{{ url('img/gob.png') }}"></a></div>
+                        <div class="col-md-6 text-right"><a href="/"><img src="{{ url('img/zam.png') }}"></a></div>
                     </div>
                 
             </div>
@@ -96,20 +96,12 @@
                         -->
                         @if (Auth::guest())
                             
-                            <a href="{{ url('/registrar') }}"><img src="{{ url('img/registrate.png') }}"></a>
-                            <a href="{{ route('login') }}"><img src="{{ url('img/accede.png') }}"></a>
+                            <a href="{{ url('/register') }}"><img src="{{ url('img/registrate.png') }}"></a>
+                            
                         @else
-                            <a href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                                <img src="{{ url('img/salir.png') }}">
-                            </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
-                            </form>
+                            
                         @endif
-                        <img src="{{ url('img/red.png') }}">
+                        <a href="/"><img src="{{ url('img/red.png') }}"></a>
                     </ul>
                 </div>
             </div>
@@ -118,9 +110,9 @@
         @yield('content')
     </div>
 
-    <!-- Scripts -->
+    <!-- Scripts
     <script src="/js/app.js"></script>
-    
+     -->
     <script type="text/javascript">
 		@yield('js')
 	</script>

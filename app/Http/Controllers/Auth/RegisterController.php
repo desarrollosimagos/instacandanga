@@ -58,7 +58,6 @@ class RegisterController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
 			'phone' => 'required|max:100|unique:users',
-            'instagram_id' => 'required|max:100|unique:users',
             'password' => 'required|min:6|confirmed',
         ]);
     }
@@ -73,12 +72,8 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
-            'rif' => $data['rif'],
-            'direccion' => $data['direccion'],
-            'objetivos' => $data['objetivos'],
             'email' => $data['email'],
 			'phone' => $data['phone'],
-            'instagram_id' => $data['instagram_id'],
             'password' => bcrypt($data['password']),
         ]);
     }
@@ -100,12 +95,20 @@ class RegisterController extends Controller
 		return redirect('/validate')->with('status', 'Enviamos un codigo de verificacion a su telefono. Ingreselo a continuacion');
 	}
 	
-	public function activateUser($token)
+	public function activateUser($token, Request $request)
 	{
-		if ($user = $this->activationService->activateUser($token)) {
-			auth()->login($user);
-			return redirect($this->redirectPath());
-		}
-		abort(404);
+        if ($user = $this->activationService->activateUser($token)) {
+            
+            $request->session()->put('user_id',$user->id);
+            //$value = $request->session()->get('user_id');
+            //echo $value;
+            //$request->session()->get('user', $user);
+            //echo var_dump($user);
+            auth()->login($user);
+			return redirect('/colectivos');
+		}else{
+            return redirect('/validate');
+        }
+		//abort(404);
 	}
 }
