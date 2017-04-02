@@ -32,13 +32,13 @@ class ActivationService
 
         $link = route('user.activate', $token);
 		$telefono =$user->phone;
-        $message = sprintf('http://sms.bva.org.ve/send.php?p=%s&c=%s', $telefono,$token);
+        //$message = sprintf('http://sms.bva.org.ve/send.php?p=%s&c=%s', $telefono,$token);
 
-        $page = file_get_contents($message);
+        //$page = file_get_contents($message);
 
 
 
-        $message = sprintf('Use el siguiente enlace para activar su cuenta: https://mrd.net.ve/user/activation/%s', $token);
+        $message = sprintf('Su codigo de verificación es el siguiente: %s  ,Use el siguiente enlace para activar su cuenta: https://mrd.net.ve/user/activation/%s', $token);
 
         $this->mailer->raw($message, function (Message $m) use ($user) {
             $m->to($user->email)->subject('Correo de Activación.');

@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 //use Illuminate\Support\Facades\Response;
+
+use Illuminate\Mail\Mailer;
+use Illuminate\Mail\Message;
+
 use App\twitter;
 use App\facebook;
 use App\google;
@@ -74,10 +78,18 @@ class HomeController extends Controller
 		->first();
 
         $mensaje = urlencode('Su registro en MRD ha sido satisfactorio. Su número de identificación de usuario es mrd-00'.Auth::id());
-        $message = sprintf('http://sms.bva.org.ve/send.php?p=%s&c=%s', $queries->phone,$mensaje);
+        //$message = sprintf('http://sms.bva.org.ve/send.php?p=%s&c=%s', $queries->phone,$mensaje);
 
-        $page = file_get_contents($message);
+        //$page = file_get_contents($message);
+
+        $message = 'Su registro en MRD ha sido satisfactorio. Su número de identificación de usuario es mrd-00'.Auth::id();
+
+        $this->mailer->raw($message, function (Message $m) use ($user) {
+            $m->to($user->email)->subject('Correo de Registro.');
+        });
+
         Auth::logout();
+        Session:flush();
 
         //return redirect('/');
         return view('exito')->with(array('id'=>$queries->id));
