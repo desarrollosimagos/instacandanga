@@ -121,6 +121,7 @@
                         </div>
                         @if (Auth::guest())
                             
+                            <a href="{{ url('/validate') }}"><img src="{{ url('img/verificar.png') }}"></a>
                             <a href="{{ url('/register') }}"><img src="{{ url('img/registrate.png') }}"></a>
                             
                         @else
