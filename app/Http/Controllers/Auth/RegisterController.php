@@ -105,8 +105,10 @@ class RegisterController extends Controller
 	
 	public function activateUser($token, Request $request)
 	{
-        Auth::logout();
-        Session:flush();
+        if(Auth){
+            Auth::logout();
+            Session:flush();
+        }
         if ($user = $this->activationService->activateUser($token)) {
             
             $request->session()->put('user_id',$user->id);
