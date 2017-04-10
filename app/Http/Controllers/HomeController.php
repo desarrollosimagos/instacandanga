@@ -161,7 +161,7 @@ class HomeController extends Controller
         $id = Auth::id();
         $value = False;
         $value = $request->session()->get('user_id');
-        if(!$value)
+        if(!$id)
             return redirect('/');
         return view('colectivos');
     }

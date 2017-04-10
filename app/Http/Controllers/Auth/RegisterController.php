@@ -105,16 +105,13 @@ class RegisterController extends Controller
 	
 	public function activateUser($token, Request $request)
 	{
+        Auth::logout();
+        Session:flush();
         if ($user = $this->activationService->activateUser($token)) {
             
             $request->session()->put('user_id',$user->id);
             if($user->capacitar)
-                return view('exito')->with(array('id'=>$user->id));
-            //exit;
-            //$value = $request->session()->get('user_id');
-            //echo $value;
-            //$request->session()->get('user', $user);
-            //echo var_dump($user);
+                Auth::logout();Session:flush();return view('exito')->with(array('id'=>$user->id));
             auth()->login($user);
 			return redirect('/colectivos');
 		}else{
