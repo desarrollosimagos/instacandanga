@@ -106,7 +106,7 @@ class RegisterController extends Controller
 	
 	public function activateUser($token, Request $request)
 	{
-        if(Auth){
+        if(Auth::id){
             Auth::logout();
             //Session:flush();
         }
