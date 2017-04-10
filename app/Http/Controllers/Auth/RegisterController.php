@@ -107,13 +107,13 @@ class RegisterController extends Controller
 	{
         if(Auth){
             Auth::logout();
-            Session:flush();
+            //Session:flush();
         }
         if ($user = $this->activationService->activateUser($token)) {
             
             $request->session()->put('user_id',$user->id);
             if($user->capacitar)
-                Auth::logout();Session:flush();return view('exito')->with(array('id'=>$user->id));
+                Auth::logout();//Session:flush();return view('exito')->with(array('id'=>$user->id));
             auth()->login($user);
 			return redirect('/colectivos');
 		}else{
