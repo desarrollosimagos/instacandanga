@@ -43,12 +43,12 @@ return [
     'facebook' => [
     'client_id' => '1924808381083207',
     'client_secret' => 'ebe2bb10183774e163721b7de45cd9ed',
-    'redirect' => 'http://twiguer.puroextremo.com.ve/auth/facebook/callback',
+    'redirect' => 'https://instacandanga.com.ve/auth/facebook/callback',
     ],
     'google' => [
     'client_id' => '862037043618-o53f5mlffbk0m4vdago6kg8s28cvpugo.apps.googleusercontent.com',
     'client_secret' => 'fl1h1DS_tf_c5MPHICj9yWsB',
-    'redirect' => 'http://twiguer.puroextremo.com.ve/auth/google/callback',
+    'redirect' => 'https://instacandanga.com.ve/auth/google/callback',
     ],
     'instagram' => [
     'client_id' => env('INSTAGRAM_KEY'),
